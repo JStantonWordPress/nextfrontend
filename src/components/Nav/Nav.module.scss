@@ -140,6 +140,9 @@
   }
 }
 
+
+
+
 .navMenu {
   display: flex;
   align-items: center;
@@ -194,7 +197,7 @@
     display: block;
     text-decoration: none;
     color: $white;
-    font-size: 18px;
+    font-size: 16px;
     text-transform: uppercase;
     padding: 0.5em;
     font-weight:600;
@@ -225,4 +228,9 @@
       }
     }
   }
+  @media (max-width:767px){
+    display:none;
+  }
 }
+
+
