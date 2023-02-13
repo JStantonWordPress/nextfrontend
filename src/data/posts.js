@@ -54,6 +54,16 @@ export const QUERY_ALL_POSTS_ARCHIVE = gql`
               slug
             }
           }
+          featuredImage {
+            node {
+              altText
+              caption
+              sourceUrl
+              srcSet
+              sizes
+              id
+            }
+          }
           excerpt
         }
       }

@@ -11,7 +11,7 @@ const MobileNav = () => {
     const navigation = findMenuByLocation(menus, 'MOBILE');
 
     return (
-        <Menu right>
+        <Menu className={styles.mobileHamburger} right>
             {navigation?.map((listItem) => {
                 return(
                     <li key={listItem.id} className={styles.menuItem}>

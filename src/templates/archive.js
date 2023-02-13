@@ -5,10 +5,6 @@ import { helmetSettingsFromMetadata } from 'lib/site';
 import useSite from 'hooks/use-site';
 
 import Layout from 'components/Layout';
-import Header from 'components/Header';
-import Section from 'components/Section';
-import Container from 'components/Container';
-import SectionTitle from 'components/SectionTitle';
 import PostCard from 'components/PostCard';
 import Pagination from 'components/Pagination/Pagination';
 
@@ -41,45 +37,46 @@ export default function TemplateArchive({
 
       <WebpageJsonLd title={title} description={metadata.description} siteTitle={siteMetadata.title} slug={slug} />
 
-      <Header>
-        <Container>
-          <h1>{Title || title}</h1>
-          {metadata.description && (
-            <p
-              className={styles.archiveDescription}
-              dangerouslySetInnerHTML={{
-                __html: metadata.description,
-              }}
-            />
-          )}
-        </Container>
-      </Header>
+        <div className="container">
+            <div className="grid">
+                <div className="col-sm-12">
+                    <h1>{Title || title}</h1>
+                    {metadata.description && (
+                        <p
+                            className={styles.archiveDescription}
+                            dangerouslySetInnerHTML={{
+                                __html: metadata.description,
+                            }}
+                        />
+                    )}
+                </div>
+            </div>
+        </div>
 
-      <Section>
-        <Container>
-          <SectionTitle>Posts</SectionTitle>
-          {Array.isArray(posts) && (
-            <>
-              <ul className={styles.posts}>
-                {posts.map((post) => {
-                  return (
-                    <li key={post.slug}>
-                      <PostCard post={post} options={postOptions} />
-                    </li>
-                  );
-                })}
-              </ul>
-              {pagination && (
-                <Pagination
-                  currentPage={pagination?.currentPage}
-                  pagesCount={pagination?.pagesCount}
-                  basePath={pagination?.basePath}
-                />
-              )}
-            </>
-          )}
-        </Container>
-      </Section>
+        <div className="container">
+            <div className="grid">
+                {Array.isArray(posts) && (
+                    <>
+                        {posts.map((post) => {
+                            return (
+                                <div className="col-sm-6 col-md-4 col-grid" key={post.slug}>
+                                    <PostCard post={post} options={postOptions} />
+                                </div>
+                                );
+                            })}
+                        {pagination && (
+                            <div className="col-sm-12">
+                            <Pagination
+                                currentPage={pagination?.currentPage}
+                                pagesCount={pagination?.pagesCount}
+                                basePath={pagination?.basePath}
+                            />
+                            </div>
+                        )}
+                    </>
+                )}
+            </div>
+        </div>
     </Layout>
   );
 }
