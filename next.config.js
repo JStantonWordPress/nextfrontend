@@ -10,6 +10,8 @@ const nextConfig = {
   images: {
     domains: [
         'res.cloudinary.com',
+        'nextfrontend-alpha.vercel.app',
+        'localhost:3000'
     ],
   },
 
@@ -32,7 +34,7 @@ const nextConfig = {
 
     // By default, only render this number of post pages ahead of time, otherwise
     // the rest will be rendered on-demand
-    POSTS_PRERENDER_COUNT: 20,
+    POSTS_PRERENDER_COUNT: 10,
 
     WORDPRESS_GRAPHQL_ENDPOINT: process.env.WORDPRESS_GRAPHQL_ENDPOINT,
     WORDPRESS_MENU_LOCATION_NAVIGATION: process.env.WORDPRESS_MENU_LOCATION_NAVIGATION || 'PRIMARY',

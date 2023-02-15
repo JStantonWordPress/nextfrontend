@@ -11,6 +11,7 @@ import Footer from 'components/Footer';
 import MobileNav from "../MobileNav/MobileNav";
 
 
+
 const Layout = ({ children }) => {
   const router = useRouter();
   const { asPath } = router;

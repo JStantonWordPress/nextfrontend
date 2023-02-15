@@ -1,0 +1,45 @@
+@import "styles/settings/__settings";
+
+.heroFluid{
+  padding-top:100px;
+  padding-bottom:100px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+
+  &:before{
+    background: rgba(0,0,0,0.7);
+    top: 0;
+    right:0;
+    left:0;
+    bottom:0;
+    position: absolute;
+    content: "";
+  }
+
+  h1{
+    color:#fff;
+    font-weight:700;
+    margin-top:0px;
+  }
+  p{
+    color:#fff;
+  }
+  a{
+    background-color:$blue;
+    color:#fff;
+    padding:15px 40px;
+    margin-top:30px;
+    display: table;
+    font-weight:700;
+    text-transform: uppercase;
+  }
+
+  @media screen and (max-width: 767px){
+    padding-top:40px;
+    padding-bottom:40px;
+    h1{
+      font-size:32px;
+    }
+  }
+}

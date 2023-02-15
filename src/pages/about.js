@@ -6,14 +6,9 @@ import { WebpageJsonLd } from 'lib/json-ld';
 import { helmetSettingsFromMetadata } from 'lib/site';
 import useSite from 'hooks/use-site';
 import usePageMetadata from 'hooks/use-page-metadata';
-
+import Hero from 'components/Blocks/Hero';
 import Layout from 'components/Layout';
 import styles from "../styles/pages/Page.module.scss";
-
-
-
-
-
 
 
 export default function AboutPage({ page, acfTemplate  }) {
@@ -21,7 +16,6 @@ export default function AboutPage({ page, acfTemplate  }) {
 
 	const {hero, about} = acfTemplate;
 
-	console.log(hero);
 
 	const { metadata: siteMetadata = {} } = useSite();
 
@@ -45,7 +39,6 @@ export default function AboutPage({ page, acfTemplate  }) {
 
 	return (
 		<Layout>
-			<div style={{background: "red"}}>
 			<Helmet {...helmetSettings} />
 			<WebpageJsonLd
 				title={metadata.title}
@@ -53,13 +46,17 @@ export default function AboutPage({ page, acfTemplate  }) {
 				siteTitle={siteMetadata.title}
 				slug={slug}
 			/>
+				<Hero props={hero} />
 				<div className="container">
-			<h1 className={styles.title}>{title}-{template}</h1>
-			<p>{hero.title}</p>
-			<p>{about.aboutCopy}</p>
-			<p>{hero.backgroundImage.sourceUrl}</p>
+					<div className="grid">
+						<div className="col-sm-12">
+							<h1 className={styles.title}>{title}-{template}</h1>
+							<p>{hero.title}</p>
+							<p>{about.aboutCopy}</p>
+
+						</div>
+					</div>
 				</div>
-			</div>
 		</Layout>
 	);
 }

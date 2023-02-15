@@ -6,6 +6,10 @@ query AboutACF ($ID: ID!) {
     hero: acfhero {
       copy
       title
+      cta {
+         title
+         url
+      }
       backgroundImage {
         sourceUrl
         mediaItemUrl
