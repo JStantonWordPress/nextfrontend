@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet';
-
+import dynamic from "next/dynamic";
+const Hero = dynamic(() => import("../components/Blocks/Hero/Hero"));
 import { getPageByUri } from 'lib/pages';
 import { WebpageJsonLd } from 'lib/json-ld';
 import { helmetSettingsFromMetadata } from 'lib/site';
@@ -7,7 +8,9 @@ import useSite from 'hooks/use-site';
 import usePageMetadata from 'hooks/use-page-metadata';
 import Layout from 'components/Layout';
 import {getHomeTemplate} from "../lib/acf";
-import Hero from "../components/Blocks/Hero";
+
+
+
 
 export default function AboutPage({ page, acfTemplate }) {
     const { title, metaTitle, description, slug  } = page;

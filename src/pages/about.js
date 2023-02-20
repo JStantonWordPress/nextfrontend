@@ -1,13 +1,13 @@
 import { Helmet } from 'react-helmet';
-
+import dynamic from "next/dynamic";
+const Hero = dynamic(() => import("../components/Blocks/Hero"));
+const SliderSection = dynamic(() => import("../components/Blocks/Slider"));
 import { getPageByUri } from 'lib/pages';
 import { getAboutTemplate } from 'lib/acf'
 import { WebpageJsonLd } from 'lib/json-ld';
 import { helmetSettingsFromMetadata } from 'lib/site';
 import useSite from 'hooks/use-site';
 import usePageMetadata from 'hooks/use-page-metadata';
-import Hero from 'components/Blocks/Hero';
-import SliderSection from 'components/Blocks/Slider';
 import Layout from 'components/Layout';
 
 
