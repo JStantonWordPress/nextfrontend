@@ -8,18 +8,20 @@ import { getRecentPosts } from 'lib/posts';
 import { getCategories } from 'lib/categories';
 import NextNProgress from 'nextjs-progressbar';
 import { getAllMenus } from 'lib/menus';
+import { getGlobal } from 'lib/acf';
 
 import 'styles/globals.scss';
 import 'styles/wordpress.scss';
 import variables from 'styles/_variables.module.scss';
 
 
-function App({ Component, pageProps = {}, metadata, recentPosts, categories, menus }) {
+function App({ Component, pageProps = {}, metadata, recentPosts, categories, menus, global }) {
   const site = useSiteContext({
     metadata,
     recentPosts,
     categories,
     menus,
+    global
   });
 
 
@@ -48,12 +50,17 @@ App.getInitialProps = async function (appContext) {
 
   const { menus = [] } = await getAllMenus();
 
+  const { global= [] } = await getGlobal();
+
+  //console.log('global', global);
+
   return {
     ...appProps,
     metadata: await getSiteMetadata(),
     recentPosts,
     categories,
     menus,
+    global
   };
 };
 

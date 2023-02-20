@@ -7,14 +7,14 @@ import { helmetSettingsFromMetadata } from 'lib/site';
 import useSite from 'hooks/use-site';
 import usePageMetadata from 'hooks/use-page-metadata';
 import Hero from 'components/Blocks/Hero';
+import SliderSection from 'components/Blocks/Slider';
 import Layout from 'components/Layout';
-import styles from "../styles/pages/Page.module.scss";
 
 
 export default function AboutPage({ page, acfTemplate  }) {
 	const { title, metaTitle, description, slug  } = page;
 
-	const {hero, about} = acfTemplate;
+	const { hero } = acfTemplate;
 
 
 	const { metadata: siteMetadata = {} } = useSite();
@@ -34,7 +34,6 @@ export default function AboutPage({ page, acfTemplate  }) {
 	}
 
 	const helmetSettings = helmetSettingsFromMetadata(metadata);
-	const template = page.template.templateName;
 
 
 	return (
@@ -47,16 +46,7 @@ export default function AboutPage({ page, acfTemplate  }) {
 				slug={slug}
 			/>
 				<Hero props={hero} />
-				<div className="container">
-					<div className="grid">
-						<div className="col-sm-12">
-							<h1 className={styles.title}>{title}-{template}</h1>
-							<p>{hero.title}</p>
-							<p>{about.aboutCopy}</p>
-
-						</div>
-					</div>
-				</div>
+				<SliderSection />
 		</Layout>
 	);
 }

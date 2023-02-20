@@ -10,6 +10,8 @@ import { findMenuByLocation, MENU_LOCATION_NAVIGATION_DEFAULT } from 'lib/menus'
 import styles from './Nav.module.scss';
 import NavListItem from 'components/NavListItem';
 
+
+
 const SEARCH_HIDDEN = 'hidden';
 
 const Nav = () => {

@@ -39,8 +39,10 @@
     "react-dom": "18.2.0",
     "react-helmet": "^6.1.0",
     "react-icons": "^4.7.1",
+    "react-slick": "^0.29.0",
     "rss": "^1.2.2",
     "sass": "^1.57.1",
+    "slick-carousel": "^1.8.1",
     "style.css": "^1.0.3"
   },
   "devDependencies": {

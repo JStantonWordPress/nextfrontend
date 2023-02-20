@@ -5,7 +5,6 @@ const Hero = ({ props }) => {
 
 	const { title, copy, backgroundImage, cta  } = props;
 
-	console.log(props);
 	return (
 		<div className={styles.heroFluid} style={{backgroundImage: "url(" + backgroundImage.sourceUrl + ")"}}>
 			<div className="container">

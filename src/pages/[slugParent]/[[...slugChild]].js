@@ -1,25 +1,16 @@
-import Link from 'next/link';
 import { Helmet } from 'react-helmet';
-
 import { getPageByUri, getAllPages, getBreadcrumbsByUri } from 'lib/pages';
 import { WebpageJsonLd } from 'lib/json-ld';
 import { helmetSettingsFromMetadata } from 'lib/site';
 import useSite from 'hooks/use-site';
 import usePageMetadata from 'hooks/use-page-metadata';
-
 import Layout from 'components/Layout';
-import Header from 'components/Header';
-import Content from 'components/Content';
-import Section from 'components/Section';
-import Container from 'components/Container';
 import FeaturedImage from 'components/FeaturedImage';
-
-
 import styles from 'styles/pages/Page.module.scss';
 
 export default function Page({ page  }) {
-  const { title, metaTitle, description, slug, content, featuredImage, children } = page;
 
+  const { title, metaTitle, description, slug, content, featuredImage } = page;
 
   const { metadata: siteMetadata = {} } = useSite();
 
@@ -37,68 +28,37 @@ export default function Page({ page  }) {
     metadata.twitter.title = metadata.title;
   }
 
-  const hasChildren = Array.isArray(children) && children.length > 0;
   const helmetSettings = helmetSettingsFromMetadata(metadata);
-  const template = page.template.templateName;
 
   return (
     <Layout>
       <Helmet {...helmetSettings} />
-
       <WebpageJsonLd
         title={metadata.title}
         description={metadata.description}
         siteTitle={siteMetadata.title}
         slug={slug}
       />
-
-      <Header>
-        {featuredImage && (
-          <FeaturedImage
-            {...featuredImage}
-            src={featuredImage.sourceUrl}
-            dangerouslySetInnerHTML={featuredImage.caption}
-          />
-        )}
-      </Header>
-      <h1 className={styles.title}>{title}-{template}</h1>
-
-
-      <Content>
-        <Section>
-          <Container>
-            <div
-              className={styles.content}
-              dangerouslySetInnerHTML={{
-                __html: content,
-              }}
-            />
-          </Container>
-        </Section>
-
-        {hasChildren && (
-          <Section className={styles.sectionChildren}>
-            <Container>
-              <aside>
-                <p className={styles.childrenHeader}>
-                  <strong>{title}</strong>
-                </p>
-                <ul>
-                  {children.map((child) => {
-                    return (
-                      <li key={child.id}>
-                        <Link href={child.uri}>
-                          <a>{child.title}</a>
-                        </Link>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </aside>
-            </Container>
-          </Section>
-        )}
-      </Content>
+        <div className="container">
+            <div className="grid">
+                <div className="col-sm-12">
+                    {featuredImage && (
+                        <FeaturedImage
+                            {...featuredImage}
+                            src={featuredImage.sourceUrl}
+                            dangerouslySetInnerHTML={featuredImage.caption}
+                        />
+                    )}
+                    <h1 className={styles.title}>{title}</h1>
+                    <div
+                        className={styles.content}
+                        dangerouslySetInnerHTML={{
+                            __html: content,
+                        }}
+                    />
+                </div>
+            </div>
+        </div>
     </Layout>
   );
 }
@@ -127,14 +87,11 @@ export async function getStaticProps({ params = {} } = {}) {
     };
   }
 
-
   const { pages } = await getAllPages({
     queryIncludes: 'index',
   });
 
-
   const breadcrumbs = getBreadcrumbsByUri(pageUri, pages);
-
 
   return {
     props: {
@@ -148,8 +105,6 @@ export async function getStaticProps({ params = {} } = {}) {
 
 
 export async function getStaticPaths() {
-
-
 
     const {pages} = await getAllPages({
       queryIncludes: 'index',

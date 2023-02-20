@@ -5,13 +5,14 @@ import { WebpageJsonLd } from 'lib/json-ld';
 import { helmetSettingsFromMetadata } from 'lib/site';
 import useSite from 'hooks/use-site';
 import usePageMetadata from 'hooks/use-page-metadata';
-
-
 import Layout from 'components/Layout';
-import styles from "../styles/pages/Page.module.scss";
+import {getHomeTemplate} from "../lib/acf";
+import Hero from "../components/Blocks/Hero";
 
-export default function AboutPage({ page }) {
+export default function AboutPage({ page, acfTemplate }) {
     const { title, metaTitle, description, slug  } = page;
+
+    const {hero} = acfTemplate;
 
     const { metadata: siteMetadata = {} } = useSite();
 
@@ -30,8 +31,6 @@ export default function AboutPage({ page }) {
     }
 
     const helmetSettings = helmetSettingsFromMetadata(metadata);
-    const template = page.template.templateName;
-
 
     return (
         <Layout>
@@ -42,8 +41,7 @@ export default function AboutPage({ page }) {
                 siteTitle={siteMetadata.title}
                 slug={slug}
             />
-            <h1 className={styles.title}>{title}-{template}</h1>
-            <p>Homepage</p>
+            <Hero props={hero} />
         </Layout>
     );
 }
@@ -62,9 +60,15 @@ export async function getStaticProps() {
         };
     }
 
+    const homeTemplateResponse = await getHomeTemplate({
+        ID: page.id,
+    });
+    const acfTemplate = homeTemplateResponse.data.data.page;
+
     return {
         props: {
             page,
+            acfTemplate
         },
         revalidate: 60
     };

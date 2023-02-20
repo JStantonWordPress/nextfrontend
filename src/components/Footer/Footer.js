@@ -1,95 +1,53 @@
 import Link from 'next/link';
-
 import useSite from 'hooks/use-site';
-import { postPathBySlug } from 'lib/posts';
-import { categoryPathBySlug } from 'lib/categories';
-
-import Section from 'components/Section';
-import Container from 'components/Container';
-
+import {findMenuByLocation} from 'lib/menus';
 import styles from './Footer.module.scss';
+import { FaFacebookF, FaLinkedinIn, FaTwitter } from 'react-icons/fa';
 
 const Footer = () => {
-  const { metadata = {}, recentPosts = [], categories = [] } = useSite();
-  const { title } = metadata;
 
-  const hasRecentPosts = Array.isArray(recentPosts) && recentPosts.length > 0;
-  const hasRecentCategories = Array.isArray(categories) && categories.length > 0;
-  const hasMenu = hasRecentPosts || hasRecentCategories;
+  const { global = [], menus } = useSite();
+  const { acfOptionsSocial, acfOptionsFooter, acfOptionsContact } = global;
+  const navigation = findMenuByLocation(menus, 'FOOTER');
 
   return (
     <footer className={styles.footer}>
-      {hasMenu && (
-        <Section className={styles.footerMenu}>
-          <Container>
-            <ul className={styles.footerMenuColumns}>
-              {hasRecentPosts && (
-                <li>
-                  <Link href="/blog/">
-                    <a className={styles.footerMenuTitle}>
-                      <strong>Recent Posts</strong>
-                    </a>
-                  </Link>
-                  <ul className={styles.footerMenuItems}>
-                    {recentPosts.map((post) => {
-                      const { id, slug, title } = post;
-                      return (
-                        <li key={id}>
-                          <Link href={postPathBySlug(slug)}>
-                            <a>{title}</a>
-                          </Link>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </li>
-              )}
-              {hasRecentCategories && (
-                <li>
-                  <Link href="/categories/">
-                    <a className={styles.footerMenuTitle}>
-                      <strong>Categories</strong>
-                    </a>
-                  </Link>
-                  <ul className={styles.footerMenuItems}>
-                    {categories.map((category) => {
-                      const { id, slug, name } = category;
-                      return (
-                        <li key={id}>
-                          <Link href={categoryPathBySlug(slug)}>
-                            <a>{name}</a>
-                          </Link>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </li>
-              )}
-              <li>
-                <p className={styles.footerMenuTitle}>
-                  <strong>More</strong>
-                </p>
-                <ul className={styles.footerMenuItems}>
-                  <li>
-                    <a href="/feed.xml">RSS</a>
-                  </li>
-                  <li>
-                    <a href="/sitemap.xml">Sitemap</a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </Container>
-        </Section>
-      )}
+      <div className="container">
+        <div className="grid">
+          <div className="col-sm-12">
+              <div className={styles.socialWrap}>
+              <a target="_blank" rel="noreferrer" href={acfOptionsSocial.themeSettingsSocial.facebook}><FaFacebookF /></a>
+              <a target="_blank" rel="noreferrer" href={acfOptionsSocial.themeSettingsSocial.linkedin}><FaLinkedinIn /></a>
+              <a target="_blank" rel="noreferrer" href={acfOptionsSocial.themeSettingsSocial.twitter}><FaTwitter /></a>
+              </div>
+              <p>Phone: {acfOptionsContact.contact.phone}</p>
+              <p>Email: {acfOptionsContact.contact.phone}</p>
 
-      <Section className={styles.footerLegal}>
-        <Container>
-          <p>
-            &copy; {new Date().getFullYear()} {title}
-          </p>
-        </Container>
-      </Section>
+          </div>
+          <div className="col-sm-12">
+                <ul className={styles.footerMenu}>
+                    {navigation?.map((listItem) => {
+                        return(
+                            <li key={listItem.id} className={styles.menuItem}>
+                                <Link href={listItem.path}>{listItem.label}</Link>
+                            </li>
+                        );
+                    })}
+                </ul>
+          </div>
+        </div>
+      </div>
+      <div className={styles.footerLegal}>
+        <div className="container">
+            <div className="grid">
+                <div className="col-sm-12">
+                    <p>
+                        &copy; {new Date().getFullYear()} {acfOptionsFooter.themeSettingsFooter.copyright}
+                    </p>
+                </div>
+            </div>
+        </div>
+      </div>
     </footer>
   );
 };
