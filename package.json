@@ -46,7 +46,7 @@
     "style.css": "^1.0.3"
   },
   "devDependencies": {
-    "@netlify/plugin-nextjs": "^4.29.5-appdir.0",
+    "@netlify/plugin-nextjs": "^4.30.4-appdir.0",
     "eslint": "8.23.1",
     "eslint-config-next": "^13.1.6",
     "eslint-config-prettier": "^8.6.0",
