@@ -3,12 +3,10 @@ import { Helmet } from 'react-helmet';
 
 import useSite from 'hooks/use-site';
 import { helmetSettingsFromMetadata } from 'lib/site';
-
 import Nav from 'components/Nav';
 import Main from 'components/Main';
 import Footer from 'components/Footer';
 import MobileNav from "../MobileNav/MobileNav";
-
 //Get Google font
 import { Roboto } from "@next/font/google"
 const roboto = Roboto({weight: ['100','400','500','700','900'], style: ['italic','normal'], subsets: ["latin"], display: 'swap'})
