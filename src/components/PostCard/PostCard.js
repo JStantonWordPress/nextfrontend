@@ -40,27 +40,23 @@ const PostCard = ({ post, options = {} }) => {
       {featuredImage &&
           <div className={styles.postHero}>
             <Link href={postPathBySlug(slug)}>
-              <a>
                 <Image
                     src={featuredImage.sourceUrl}
                     layout="fill"
                     objectFit="cover"
                     className="flex-img"
                 />
-              </a>
             </Link>
           </div>
       }
 
       <Link href={postPathBySlug(slug)}>
-        <a>
           <h2
             className={styles.postCardTitle}
             dangerouslySetInnerHTML={{
               __html: title,
             }}
           />
-        </a>
       </Link>
       <div className={styles.postCardBody}>
         <Metadata className={styles.postCardMetadata} {...metadata} />

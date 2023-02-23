@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
 import { Helmet } from 'react-helmet';
-import styles from './Layout.module.scss';
 
 import useSite from 'hooks/use-site';
 import { helmetSettingsFromMetadata } from 'lib/site';
@@ -10,6 +9,9 @@ import Main from 'components/Main';
 import Footer from 'components/Footer';
 import MobileNav from "../MobileNav/MobileNav";
 
+//Get Google font
+import { Montserrat } from "@next/font/google"
+const montserrat = Montserrat({weight: ['100','400','600','900'], style: ['italic','normal'], subsets: ["latin"], display: 'swap'})
 
 
 const Layout = ({ children }) => {
@@ -66,7 +68,7 @@ const Layout = ({ children }) => {
 
 
   return (
-    <div className={styles.layoutContainer}>
+    <div className={montserrat.className}>
       <Helmet {...helmetSettings} />
       <MobileNav />
       <Nav />

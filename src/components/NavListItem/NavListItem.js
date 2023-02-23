@@ -11,7 +11,7 @@ const NavListItem = ({ className, item }) => {
     <li key={item.id}>
       {!item.path.includes('http') && !item.target && (
         <Link href={item.path}>
-          <a title={item.title}>{item.label}</a>
+          {item.label}
         </Link>
       )}
       {item.path.includes('http') && (

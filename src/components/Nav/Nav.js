@@ -209,7 +209,7 @@ const Nav = () => {
                           return (
                             <li key={slug}>
                               <Link tabIndex={index} href={postPathBySlug(slug)}>
-                                <a>{title}</a>
+                                {title}
                               </Link>
                             </li>
                           );

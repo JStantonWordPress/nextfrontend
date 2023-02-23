@@ -2,6 +2,7 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { Helmet } from 'react-helmet';
 
+
 // Via https://github.com/vercel/next.js/blob/canary/examples/with-react-helmet/pages/_document.js
 
 export default class MyDocument extends Document {

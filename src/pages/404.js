@@ -21,7 +21,7 @@ export default function Custom404() {
           <p className={styles.errorMessage}>The page you were looking for could not be found.</p>
           <p>
             <Link href="/">
-              <a>Go back home</a>
+              Go back home
             </Link>
           </p>
         </Container>

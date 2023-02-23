@@ -45,7 +45,7 @@ export default function Categories({ categories }) {
               return (
                 <li key={category.slug}>
                   <Link href={categoryPathBySlug(category.slug)}>
-                    <a>{category.name}</a>
+                      {category.name}
                   </Link>
                 </li>
               );
