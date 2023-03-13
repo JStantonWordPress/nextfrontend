@@ -43,3 +43,7 @@ public/images/og
 .vscode/
 # Local Netlify folder
 .netlify
+
+
+yarn.lock
+.husky/pre-commit
