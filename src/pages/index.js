@@ -45,6 +45,8 @@ export default function AboutPage({ page, acfTemplate }) {
                 slug={slug}
             />
             <Hero props={hero} />
+            <Hero props={hero} />
+            <Hero props={hero} />
         </Layout>
     );
 }
