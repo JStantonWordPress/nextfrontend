@@ -47,7 +47,6 @@ export default function AboutPage({ page, acfTemplate }) {
             <Hero props={hero} />
             <Hero props={hero} />
             <Hero props={hero} />
-            <Hero props={hero} />
         </Layout>
     );
 }
